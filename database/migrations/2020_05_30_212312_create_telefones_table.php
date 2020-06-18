@@ -14,10 +14,10 @@ class CreateTelefonesTable extends Migration
     public function up()
     {
         Schema::create('telefones', function (Blueprint $table) {
-            $table->increments('id_telefone')->required()->unique();
+            $table->increments('id')->required()->unique();
             $table->unsignedInteger('territorios_id');
             $table->string('unidade', 16)->required();
-            $table->string('numero_unidade', 8);
+            $table->string('numero_unidade', 60);
             $table->string('telefone', 14)->required()->unique();
             $table->boolean('status')->required();
 

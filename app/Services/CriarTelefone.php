@@ -10,14 +10,15 @@ class CriarTelefone {
         int $territorioId,
         string $unidade,
         string $numeroUnidade,
-        string $numeroTelefone) : Telefone
+        string $numeroTelefone,
+        string $situacao) : Telefone
     {
         $telefone = Telefone::create([
             'territorios_id' => $territorioId,
             'unidade' => $unidade,
             'numero_unidade' => $numeroUnidade,
             'telefone' => $numeroTelefone,
-            'status' => 1
+            'status' => boolval($situacao),
         ]);
         return $telefone;
     }

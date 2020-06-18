@@ -31,7 +31,11 @@
  
       <?php foreach($telefones as $telefone): ?>
           <tr>
-              <td style="text-align:center">{{ $telefone->id_telefone }}</td>
+              <td style="text-align:center">
+                <a href="/telefone/editar/{{ $telefone->id }}">
+                  {{ $telefone->id }}
+                </a>
+              </td>
               <td style="text-align:center">{{ $telefone->unidade }}</td>
               <td style="text-align:center">{{ $telefone->numero_unidade }}</td>
               <td style="text-align:center">{{ $telefone->telefone }}</td>

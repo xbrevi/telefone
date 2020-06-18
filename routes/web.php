@@ -13,3 +13,6 @@ Route::post('/telefone/criar/{territorioId}', 'TelefoneController@store')->name(
 
 Route::get('/territorio/{id}/edit', 'TerritoriosController@edit')->name('form_editar_territorio');
 Route::post('/territorio/{id}/edit', 'TerritoriosController@update')->name('form_atualizar_territorio');
+
+Route::get('/telefone/editar/{telefoneId}', 'TelefoneController@edit')->name('form_editar_telefone');
+//Route::post('/telefone/criar/{territorioId}', 'TelefoneController@store')->name('form_gravar_telefone');

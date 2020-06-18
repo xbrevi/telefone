@@ -41,7 +41,8 @@ class TelefoneController extends Controller {
             $territorioId,
             $request->selectUnidade,
             $request->inputNumero,
-            $request->inputTel
+            $request->inputTel,
+            $request->Radio
         );
         $request->session()
         ->flash(
@@ -49,6 +50,12 @@ class TelefoneController extends Controller {
             "Telefone {$telefone->telefone} adicionado com sucesso!"
         );
         return redirect()->route('form_listar_telefones', ['id' => $territorioId]);
-    }    
+    }
+    
+    public function edit(int $telefoneId)
+    {
+        echo "$telefoneId";
+    }
+
 
 }
