@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Territorios;
 
 class Telefone extends Model
 {
     protected $table = "telefones";
+    
     //protected $primaryKey = 'id_telefone';
 
     public $timestamps = false;
@@ -15,7 +17,7 @@ class Telefone extends Model
      
     public function territorio()
     {
-        return $this->belongsTo(Territorios::class);
+        return $this->belongsTo('App\Territorios', 'territorios_id');
     }
 
 }

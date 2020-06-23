@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CriarTelefoneFormRequest;
 use App\Telefone;
 use App\Territorios;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Services\CriarTelefone;
+use App\Http\Requests\CriarTelefoneFormRequest;
 
 class TelefoneController extends Controller {
 
@@ -54,8 +54,37 @@ class TelefoneController extends Controller {
     
     public function edit(int $telefoneId)
     {
-        echo "$telefoneId";
+       $telefone = Telefone::find($telefoneId);
+       $territorio = $telefone->territorio;
+
+       return view ('telefones.update', [
+        'titulo' => 'Editar Telefone',  
+        'topico' => "$territorio->condominio",
+        'telefone' => $telefone,
+        'territorioId' => $territorio->id
+       ]); 
     }
+
+    public function update(CriarTelefoneFormRequest $request, int $id)
+    {
+        $telefone = Telefone::find($id);
+
+        $telefone->unidade = $request->selectUnidade;
+        $telefone->numero_unidade = $request->inputNumero;
+        $telefone->telefone = $request->inputTel;
+        $telefone->status = $request->Radio;
+        $telefone->save();
+
+        $request->session()
+        ->flash(
+            'mensagem',
+            "Telefone id: {$id} atualizado com sucesso!"
+        );
+   
+        return redirect()->route('form_listar_telefones', ['territorioId' => $telefone->territorios_id]);
+  
+    }
+
 
 
 }
