@@ -15,3 +15,5 @@ Route::post('/telefone/criar/{territorioId}', 'TelefoneController@store')->name(
 Route::get('/telefone/editar/{telefoneId}', 'TelefoneController@edit')->name('form_editar_telefone');
 Route::post('/telefone/editar/{telefoneId}', 'TelefoneController@update')->name('form_editar_telefone');
 
+// IMPRIMIR TERRITORIO
+Route::get('/territorio/imprimir/{territorioId}', 'TerritoriosController@print')->name('form_imprimir_territorio');

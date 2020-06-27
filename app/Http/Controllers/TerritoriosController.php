@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use App\Territorios;
 use App\Services\RemoverTerritorio;
 
+
 class TerritoriosController extends Controller 
 {
 
@@ -88,8 +89,19 @@ class TerritoriosController extends Controller
         );
    
         return redirect()->route('form_listar_territorios');
-   
     }
+
+    public function print(int $id)
+    {
+        $territorio = Territorios::find($id);
+        $telefones = $territorio->telefones->where('status', 1);
+
+        return view ('territorios.print', [
+            'territorio' => $territorio,
+            'telefones' => $telefones
+        ]); 
+    }
+
 
     
 }

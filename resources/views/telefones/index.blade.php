@@ -3,7 +3,8 @@
 @section('titulo') Telefones @endsection
 
 @section('button')
-<a href="{{ route('form_criar_telefone', ['id' => $territorioId]) }}" id="btnAdiciona" class="btn btn-dark mb-3">Adicionar Telefone</a>
+<a href="{{ route('form_criar_telefone', ['id' => $territorioId]) }}" id="btnAdiciona" class="btn btn-dark mb-3">Incluir Telefone</a>
+<a href="{{ route('form_imprimir_territorio', ['id' => $territorioId]) }}" id="btnImprime" class="btn btn-dark mb-3 ml-1">Impr. Território</a>
 @endsection
 
 @section('corpo')
@@ -31,10 +32,8 @@
  
       <?php foreach($telefones as $telefone): ?>
           <tr>
-              <td style="text-align:center">
-                <a href="/telefone/editar/{{ $telefone->id }}">
-                  {{ $telefone->id }}
-                </a>
+              <td style="text-align:center"><a href="/telefone/editar/{{ $telefone->id }}">
+                {{ $telefone->id }}</a>
               </td>
               <td style="text-align:center">{{ $telefone->unidade }}</td>
               <td style="text-align:center">{{ $telefone->numero_unidade }}</td>

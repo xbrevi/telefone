@@ -30,4 +30,15 @@ class CriarTelefoneFormRequest extends FormRequest
             'inputNumero' => 'required|max:60'
         ];
     }
+
+    public function messages ()
+    {
+        return [
+            'inputTel.digits_between' => 'O número do telefone precisa ter entre 8 e 9 dígitos!',
+            'inputNumero.required' => 'O campo número da unidade é obrigatório',
+        ];
+    }
+
+
+
 }

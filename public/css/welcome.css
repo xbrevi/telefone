@@ -50,8 +50,6 @@ html, body {
     margin-bottom: 30px;
 }
 
-
-
 /* HOMEPAGE TERRITÓRIOS */
 
 .tabelaTerritorios {
@@ -66,4 +64,69 @@ html, body {
 
 .botaoPadrao {
     width: 86px;
+}
+
+/* IMPRIMIR TERRITORIOS */
+
+.font-notable {
+  font-family: 'Notable', sans-serif;
+  font-size: 38px;
+  color: black;
+}
+
+.font-anton {
+    /* <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> */
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    color: black;
+  
+}
+
+.font-anton-gray {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    color: #606060;
+}
+
+.font-anton-bold {
+    font-family: 'Anton', sans-serif;
+    font-size: 30px;
+    color: black;
+}
+
+.tablet, .trt, .tdt {
+    border: 1px solid black;
+    color: black;
+}
+
+.tdt
+{
+    height: 28px;
+}
+
+.tdt-morador {
+    /* <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet"> */
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid black;
+    color: black;
+}
+
+.trt-cab {
+    border: 1px solid black;
+    color: black;
+    background-color: #C8C8C8;
+    
+}
+
+.tablet {
+    width: 98%;
+    padding: 0;
+    margin: 0;  
+}
+
+.tdtelefone {
+    text-align: center;
+     vertical-align: middle;
+     border: 1px solid black;
+     color: black;
 }
