@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TerritoriosFormRequest;
+use App\Services\CriadorTerritorio;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,6 +14,10 @@ use App\Services\RemoverTerritorio;
 
 class TerritoriosController extends Controller 
 {
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
 
     public function listarTerritorios(Request $request) : View {
         $territorios = Territorios::query()->orderBy('id') ->get();
@@ -33,11 +38,14 @@ class TerritoriosController extends Controller
     }
 
     public function store(TerritoriosFormRequest $request) {
-        $territorio = new Territorios();
-        $territorio->condominio = $request->condominio;
-        $territorio->endereco = $request->endereco;
-        $territorio->revisao = $request->data_revisao;
-        $territorio->save();
+
+        $criadorTerritorio = new CriadorTerritorio;
+
+        $territorio = $criadorTerritorio->criarTerritorio (
+            $request->condominio,
+            $request->endereco,
+            $request->data_revisao
+        );
 
         $request->session()
         ->flash(
@@ -80,6 +88,8 @@ class TerritoriosController extends Controller
         $territorio->condominio = $request->condominio;
         $territorio->endereco = $request->endereco;
         $territorio->revisao = $request->data_revisao;
+        $total = $territorio->telefones->where('status', 1)->count();
+        $territorio->total_apartamentos = $total;
         $territorio->save();         
 
         $request->session()

@@ -8,36 +8,16 @@
     function printHeader(Territorios $territorio) {
         $html = '';
         $html = '<div class="ml-3 mt-3">';
-        $html = $html . '<table class ="tablet">';
+        
         $html = $html . '<div class="ml-3 mt-1">';
         $html = $html . '<span class="font-notable">TESTEMUNHO TELEFONE</span><br>';
         $html = $html . '<span class="font-anton-gray">Território: '; 
         $html = $html . '<span class="font-anton-bold">';
         $html = $html . $territorio->id . '</span> - ';        
         $html = $html . $territorio->condominio . '<br>';
-        $html = $html . 'Endereço: ' . $territorio->endereco . '</span></div>';
-        return $html;
-    }
-
-    function printMorador() {
-        $html = '
-            <td class="tdt-morador">
-                Morador:<br> 
-                Publicador:<br>
-                Data:<br>
-            </td>
-        ';
-        return $html;
-    }
-
-    function printLinha() {
-        $html = '
-            <tr class="trt">
-                <td class="tdt"></td>
-                <td class="tdt"></td>
-                <td class="tdt"></td>
-            </td>
-        ';
+        $html = $html . 'Endereço: ' . $territorio->endereco . '</span></div>';        
+        $html = $html . '<table class ="tablet">';
+ 
         return $html;
     }
 
@@ -80,11 +60,10 @@
         </div>
 
         <?php foreach($telefones as $telefone): ?>
-
-            <!-- IMPRIME HEADER NA PRIMEIRA PÁGINA E A CADA 5 TELEFONES -->
+            {{-- IMPRIME HEADER NA PRIMEIRA PÁGINA E A CADA 5 TELEFONES --}}
             <?php
                 if(!($contadorTelefone % 5)) 
-                    echo printHeader($territorio);    
+                    echo printHeader($territorio);
             ?> 
 
             <?php $contadorTelefone++; ?>
@@ -103,22 +82,19 @@
                     </td>
                 </tr>
   
-                <!-- MORADOR/ENDEREÇO/DATA -->
-                <tr class="trt">
-                    <?php for($x=0;$x<3;$x++) echo printMorador(); ?>
-                </tr>
-  
-                <!-- LINHAS -->
-                <?php for($x=0;$x<5;$x++) echo printLinha(); ?>
+                {{-- FORMULARIO MORADOR/ENDEREÇO/DATA --}}
+                @include('territorios.morador')
+
+                {{-- LINHAS --}}
+                @include('territorios.linhas')
   
                 <?php
                     // PAGEBREAK
-                    if(!($contadorTelefone % 5)) echo '</table>';       
+                    if(!($contadorTelefone % 5)) echo '</table></div>';       
                 ?>       
 
                 <?php endforeach; ?>
-                
-            </table>
-        </div>
+
+            <?php if($contadorTelefone % 5) echo '</table></div>'; ?>    
     </body>
-</html>
+</html>g

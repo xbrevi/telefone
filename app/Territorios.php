@@ -8,7 +8,7 @@ class Territorios extends Model
 {
     protected $table = "territorios";
     public $timestamps = false;
-    //protected $fillable = ['nome'];
+    protected $fillable = ['condominio', 'endereco', 'revisao', 'total_apartamentos'];
 
     public function telefones()
     {

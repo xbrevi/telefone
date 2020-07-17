@@ -11,6 +11,10 @@ use App\Http\Requests\CriarTelefoneFormRequest;
 
 class TelefoneController extends Controller {
 
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function show(Request $request, int $territorio_id) : View {
         $territorio = Territorios::find($territorio_id);
         $telefones = $territorio->telefones;
@@ -36,7 +40,10 @@ class TelefoneController extends Controller {
         ]);
     }
 
-    public function store(CriarTelefoneFormRequest $request, int $territorioId, CriarTelefone $criarTelefone) {
+    public function store(CriarTelefoneFormRequest $request, int $territorioId) {
+
+        $criarTelefone = new CriarTelefone;
+
         $telefone = $criarTelefone->criarTel(
             $territorioId,
             $request->selectUnidade,
@@ -44,6 +51,7 @@ class TelefoneController extends Controller {
             $request->inputTel,
             $request->Radio
         );
+        
         $request->session()
         ->flash(
             'mensagem',
