@@ -51,8 +51,11 @@
         <div class="d-flex justify-content-center">
         @yield('button')
         </div>
-
         @yield('corpo')
+
+        <div class="d-flex flex-row-reverse mr-3">
+            Território Telefones 1.0
+        </div>
 
     </body>
 </html>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Services\CriarTelefone;
 use App\Http\Requests\CriarTelefoneFormRequest;
+use Illuminate\Database\QueryException;
 
 class TelefoneController extends Controller {
 
@@ -42,21 +43,32 @@ class TelefoneController extends Controller {
 
     public function store(CriarTelefoneFormRequest $request, int $territorioId) {
 
-        $criarTelefone = new CriarTelefone;
-
-        $telefone = $criarTelefone->criarTel(
-            $territorioId,
-            $request->selectUnidade,
-            $request->inputNumero,
-            $request->inputTel,
-            $request->Radio
-        );
+        try {
+            $criarTelefone = new CriarTelefone;
+            $telefone = $criarTelefone->criarTel(
+                $territorioId,
+                $request->selectUnidade,
+                $request->inputNumero,
+                $request->inputTel,
+                $request->Radio
+            );
+        }
+        catch (QueryException $exception) {
+            $request->session()
+            ->flash(
+                'mensagem',
+                "Telefone {$request->inputTel} repetido - Não cadastrado!"
+            );
+          
+            return redirect()->route('form_listar_telefones', ['id' => $territorioId]);
+        }
         
         $request->session()
         ->flash(
             'mensagem',
             "Telefone {$telefone->telefone} adicionado com sucesso!"
         );
+
         return redirect()->route('form_listar_telefones', ['id' => $territorioId]);
     }
     

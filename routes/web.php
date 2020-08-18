@@ -35,9 +35,7 @@ Route::get('/sair', function () {
 Route::get('/entrar', 'EntrarController@index')->name('form_entrar');
 Route::post('/entrar', 'EntrarController@entrar');
 
-/*
-// Habilitar botão em form 
 
+// Habilitar botão Registrar 
 Route::get('/registrar', 'RegistroController@create')->name('form_registrar');
 Route::post('/registrar', 'RegistroController@store');
-*/

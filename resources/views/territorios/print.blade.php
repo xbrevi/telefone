@@ -97,4 +97,4 @@
 
             <?php if($contadorTelefone % 5) echo '</table></div>'; ?>    
     </body>
-</html>g
+</html>
