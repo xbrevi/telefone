@@ -32,14 +32,16 @@
                 <input type="text" class="form-control" name="endereco" id="endereco" value="{{old('endereco')}}">
 
                 <label for="data_revisao">Data Revisão</label>
-                <input type="date" class="form-control" name="data_revisao" id="data_revisao" value="{{old('data_revisao')}}">
+                <input type="date" class="form-control" style="width: 30%" name="data_revisao" id="data_revisao" value="{{old('data_revisao')}}">
 
             </div>
             <button class="btn btn-primary botaoPadrao">Atualizar</button>
 
         </form>
 
-        <button id="botaoApagar" class="btn btn-danger botaoPadrao mt-2">Apagar</button>
+        <!--
+            <button id="botaoApagar" class="btn btn-danger botaoPadrao mt-2">Apagar</button>
+        -->
 
     </div>
     <div class="col"> </div>

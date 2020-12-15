@@ -33,7 +33,7 @@
     </div>
     @endif
 
-    <form method="post" action="{{route('form_editar_telefone', ['id' => $telefone->id]) }}">
+    <form method="post" action="{{route('form_editar_telefone', ['telefoneId' => $telefone->id]) }}">
         <div class="form-row">
             <!-- TELEFONE -->
             <div class="form-group col-md-5">

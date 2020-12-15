@@ -8,13 +8,17 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/app.css">
-        <link rel="stylesheet" href="/css/welcome.css">
+        <link rel="stylesheet" href="{{URL::asset('/css/app.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('/css/welcome.css')}}">
     </head>
 
     <body>
 
-        <img src="/images/banner.jpg" class="img-fluid" alt="Responsive image">
+        {{-- <img src="/images/banner.jpg" class="img-fluid" alt="Responsive image"> --}}
+        <img src="{{URL::asset('/images/banner.jpg')}}" class="img-fluid" alt="Responsive image">
+
+        
+
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
                 @auth

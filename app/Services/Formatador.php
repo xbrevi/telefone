@@ -19,4 +19,7 @@ class Formatador
         return $telefone;
     }
 
+    public static function soNumeros(string $telefone) : string {
+        return preg_replace("/[^0-9]/", "", $telefone);
+    }
 }

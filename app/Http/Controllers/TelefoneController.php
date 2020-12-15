@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Telefone;
 use App\Territorios;
+use App\Events\NovoTelefone;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Services\CriarTelefone;
@@ -18,19 +19,24 @@ class TelefoneController extends Controller {
 
     public function show(Request $request, int $territorio_id) : View {
         $territorio = Territorios::find($territorio_id);
-        $telefones = $territorio->telefones;
+
+       $telefones = Telefone::where('territorios_id', $territorio_id)
+        ->orderByRaw('CAST(numero_unidade as UNSIGNED) ASC')
+        ->paginate(30);
+
         $mensagem = $request->session()->get('mensagem');
+        $repetido = $request->session()->get('repetido');
         return view ('telefones.index', [
             'topico' => 'Território ' . $territorio->id . ' ' . $territorio->condominio,
             'telefones' => $telefones,
             'mensagem' => $mensagem,
-            'territorioId' => $territorio_id
+            'territorioId' => $territorio_id,
+            'repetido' => $repetido
         ]); 
     }
 
     public function create(int $territorioId) : View
     {
-
         $territorio = Territorios::find($territorioId);
         $condominio = 'Território ' . $territorio->condominio;
 
@@ -39,6 +45,7 @@ class TelefoneController extends Controller {
             'topico' => $condominio,
             'territorioId' => $territorioId,
         ]);
+
     }
 
     public function store(CriarTelefoneFormRequest $request, int $territorioId) {
@@ -56,11 +63,11 @@ class TelefoneController extends Controller {
         catch (QueryException $exception) {
             $request->session()
             ->flash(
-                'mensagem',
+                'repetido',
                 "Telefone {$request->inputTel} repetido - Não cadastrado!"
             );
           
-            return redirect()->route('form_listar_telefones', ['id' => $territorioId]);
+            return redirect()->route('form_listar_telefones', [$territorioId]);
         }
         
         $request->session()
@@ -69,7 +76,7 @@ class TelefoneController extends Controller {
             "Telefone {$telefone->telefone} adicionado com sucesso!"
         );
 
-        return redirect()->route('form_listar_telefones', ['id' => $territorioId]);
+        return redirect()->route('form_listar_telefones', [$territorioId]);
     }
     
     public function edit(int $telefoneId)
@@ -95,13 +102,16 @@ class TelefoneController extends Controller {
         $telefone->status = $request->Radio;
         $telefone->save();
 
+        $eventNovoTelefone = new NovoTelefone($telefone->territorios_id);
+        event($eventNovoTelefone);
+
         $request->session()
         ->flash(
             'mensagem',
             "Telefone id: {$id} atualizado com sucesso!"
         );
    
-        return redirect()->route('form_listar_telefones', ['territorioId' => $telefone->territorios_id]);
+        return redirect()->route('form_listar_telefones', [$telefone->territorios_id]);
   
     }
 

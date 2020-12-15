@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Territorios;
+use App\Telefone;
 use App\Services\RemoverTerritorio;
 
 
@@ -104,7 +105,13 @@ class TerritoriosController extends Controller
     public function print(int $id)
     {
         $territorio = Territorios::find($id);
-        $telefones = $territorio->telefones->where('status', 1);
+
+//        $telefones = $territorio->telefones->where('status', 1);
+
+        $telefones = Telefone::where('territorios_id', $territorio->id)
+        ->where('status', 1)
+        ->orderByRaw('CAST(numero_unidade as UNSIGNED) ASC')
+        ->get();
 
         return view ('territorios.print', [
             'territorio' => $territorio,

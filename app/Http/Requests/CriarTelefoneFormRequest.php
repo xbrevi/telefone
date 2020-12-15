@@ -25,7 +25,7 @@ class CriarTelefoneFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'inputTel' => 'required | digits_between:8,9',
+            'inputTel' => 'required',  // | digits_between:8,9',
             'selectUnidade' => ['required', Rule::in(['Apartamento', 'Casa', 'Portaria', 'Outro'])],
             'inputNumero' => 'required|max:60'
         ];

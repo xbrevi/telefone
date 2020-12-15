@@ -10,7 +10,7 @@ Route::get('/criar', 'TerritoriosController@create')->name('form_criar_territori
 Route::post('/criar', 'TerritoriosController@store')->name('form_gravar_territorio');
 Route::get('/territorio/{id}/edit', 'TerritoriosController@edit')->name('form_editar_territorio');
 Route::post('/territorio/{id}/edit', 'TerritoriosController@update')->name('form_atualizar_territorio');
-Route::get('/territorios/apagar/{territorioId}', 'TerritoriosController@destroy');
+Route::get('/territorios/apagar/{territorioId}', 'TerritoriosController@destroy')->name('form_apagar_territorio');
 
 Route::get('/territorios/{territorioId}', 'TelefoneController@show')->name('form_listar_telefones');
 Route::get('/telefone/criar/{territorioId}', 'TelefoneController@create')->name('form_criar_telefone');
@@ -39,3 +39,5 @@ Route::post('/entrar', 'EntrarController@entrar');
 // Habilitar botão Registrar 
 Route::get('/registrar', 'RegistroController@create')->name('form_registrar');
 Route::post('/registrar', 'RegistroController@store');
+
+

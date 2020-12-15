@@ -2,6 +2,7 @@
 
     use App\Services\Formatador; 
     use App\Territorios;
+    use Carbon\Carbon;
 
     $contadorTelefone = 0;
 
@@ -14,7 +15,10 @@
         $html = $html . '<span class="font-anton-gray">Território: '; 
         $html = $html . '<span class="font-anton-bold">';
         $html = $html . $territorio->id . '</span> - ';        
-        $html = $html . $territorio->condominio . '<br>';
+
+        $html = $html . $territorio->condominio . 
+            ' - Rev. ' . Carbon::parse($territorio->revisao)->format('d-m-y') . '<br>';
+
         $html = $html . 'Endereço: ' . $territorio->endereco . '</span></div>';        
         $html = $html . '<table class ="tablet">';
  
@@ -36,8 +40,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Notable&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">        
-        <link rel="stylesheet" href="/css/app.css">
-        <link rel="stylesheet" href="/css/welcome.css">
+        <link rel="stylesheet" href="{{URL::asset('/css/app.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('/css/welcome.css')}}">
 
     </head>
 

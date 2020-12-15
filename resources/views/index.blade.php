@@ -34,7 +34,7 @@
       <?php foreach($territorios as $territorio): ?>
           <tr>
               <td>
-                <a href="/territorio/{{ $territorio->id }}/edit">
+                <a href="{{route('form_editar_territorio', [$territorio->id]) }}">
                   {{ $territorio->id }}
                 </a>
               </td>
@@ -43,9 +43,9 @@
               <td>{{ $territorio->endereco }}</td>
               <td>{{ date('d-m-Y', strtotime($territorio->revisao)) }}</td>
               <td style="text-align:center">{{ $territorio->total_apartamentos }}</td>
-
+              
               <td>
-                <form action="{{route('form_listar_telefones', ['id' => $territorio->id]) }}">
+                <form action="{{ route('form_listar_telefones', [$territorio->id]) }}">
                   @csrf
                   @method('GET')
                   <button class="btn btn-primary"><i class="fas fa-phone"></i></button>
@@ -53,11 +53,14 @@
               </td>
 
               <td>
-                <form method="post" action="/territorios/editar/{{$territorio->id}}" onsubmit=" return confirm('Tem certeza que deseja editar {{ addslashes( $territorio->condominio )}}?')">
+                {{-- 
+                <form method="post" action=""> 
                   @csrf
                   @method('GET')
+                  --}}  
                   <button class="btn btn-secondary"><i class="far fa-calendar-alt"></i></button>
-                </form>
+                {{-- </form>
+                --}}
               </td>
 
               {{--
@@ -71,6 +74,11 @@
 
            </tr>
       <?php endforeach; ?>
+
+
+
+
+
     </tbody>
     </table>
   </div>
