@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+/* 18/08/2022 - Commit para conectar conta e executar localmente */
+
+
 Route::get('/', 'TerritoriosController@listarTerritorios')->name('form_listar_territorios');
 Route::get('/home', 'TerritoriosController@listarTerritorios');
 
@@ -28,13 +31,10 @@ Route::get('/sair', function () {
     return redirect('/entrar');
 });
 
-
-
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/entrar', 'EntrarController@index')->name('form_entrar');
 Route::post('/entrar', 'EntrarController@entrar');
-
 
 // Habilitar botão Registrar 
 Route::get('/registrar', 'RegistroController@create')->name('form_registrar');
