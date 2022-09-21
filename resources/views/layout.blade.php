@@ -17,9 +17,6 @@
         {{-- <img src="/images/banner.jpg" class="img-fluid" alt="Responsive image"> --}}
         <img src="{{URL::asset('/images/banner.jpg')}}" class="img-fluid" alt="Responsive image">
 
-        
-
-
             <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
                 @auth
                     <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
@@ -58,7 +55,7 @@
         @yield('corpo')
 
         <div class="d-flex flex-row-reverse mr-3">
-            Território Telefones 1.0
+            Território Telefones 2.0 - 06/01/2021
         </div>
 
     </body>

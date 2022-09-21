@@ -1,4 +1,4 @@
-@extends('\layout')
+@extends('layout')
 
 @section('titulo') Entrar @endsection
 
@@ -33,10 +33,12 @@
                 Entrar
             </button>
 
-                
+            {{-- 
             <a href="{{ route('form_registrar') }}" class="btn btn-secondary mt-3">
                 Registrar-se
             </a>
+            --}}
+            
             
         </form>
     

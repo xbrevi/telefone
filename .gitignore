@@ -5,6 +5,7 @@
 /vendor
 /backup
 .env
+.env.local
 .phpunit.result.cache
 .tmp.drivedownload/
 Homestead.json
