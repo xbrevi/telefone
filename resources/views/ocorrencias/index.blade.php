@@ -22,9 +22,8 @@
 
 <div class="d-flex justify-content-center">
 
-  <form action="/ocorrencias/gravar" method="post">
-
-    {{-- <!-- TERRITORIO --> --}}
+  <form action="{{route('form_ocorrencias_gravar')}}" method="post">
+  {{-- <!-- TERRITORIO --> --}}
     <div hidden class="form-group row">
         <input type="text" hidden value="{{ $territorio_id }}" name="territorio_id">
     </div>

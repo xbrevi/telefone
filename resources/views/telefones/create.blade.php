@@ -32,7 +32,7 @@
         </ul>
     </div>
     @endif
-
+    
     <form method="post" action="{{route('form_gravar_telefone', ['territorioId' => $territorioId]) }}">
         <div class="form-row">
             <!-- TELEFONE -->
